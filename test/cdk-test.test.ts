@@ -11,16 +11,14 @@ const CdkTestStack = {
 
 jest.mock('../lib/cdk-test-stack', () => {
   return {
-      CdkTestStack: jest.fn().mockImplementation(() => {
-        return CdkTestStack
-      })
+    CdkTestStack: jest.fn().mockImplementation(() => CdkTestStack)
   }
 })
 
 test('Empty Stack', () => {
-    const app = new cdk.App();
+  const app = new cdk.App();
 
-    const stack = new CdkTest.CdkTestStack(app, 'MyTestStack');
+  const stack = new CdkTest.CdkTestStack(app, 'MyTestStack');
 
-    expect(stack.hello()).toBe("hello cdk")
+  expect(stack.hello()).toBe("hello cdk")
 });
