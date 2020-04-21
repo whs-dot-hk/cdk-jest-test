@@ -4,7 +4,7 @@ import * as cdk from '@aws-cdk/core';
 import CdkTest = require('../lib/cdk-test-stack');
 
 const CdkTestStack = {
-  constructor: function CdkTestStack(c: cdk.Construct, s: string) {
+  constructor: function CdkTestStack() {
   },
   hello: jest.fn(() => "hello cdk")
 }
