@@ -1,13 +1,26 @@
 import { expect as expectCDK, matchTemplate, MatchStyle } from '@aws-cdk/assert';
 import * as cdk from '@aws-cdk/core';
+
 import CdkTest = require('../lib/cdk-test-stack');
+
+const CdkTestStack = {
+  constructor: function CdkTestStack(c: cdk.Construct, s: string) {
+  },
+  hello: jest.fn(() => "hello cdk")
+}
+
+jest.mock('../lib/cdk-test-stack', () => {
+  return {
+      CdkTestStack: jest.fn().mockImplementation(() => {
+        return CdkTestStack
+      })
+  }
+})
 
 test('Empty Stack', () => {
     const app = new cdk.App();
-    // WHEN
+
     const stack = new CdkTest.CdkTestStack(app, 'MyTestStack');
-    // THEN
-    expectCDK(stack).to(matchTemplate({
-      "Resources": {}
-    }, MatchStyle.EXACT))
+
+    expect(stack.hello()).toBe("hello cdk")
 });

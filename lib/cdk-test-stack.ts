@@ -6,4 +6,8 @@ export class CdkTestStack extends cdk.Stack {
 
     // The code that defines your stack goes here
   }
+
+  hello() {
+    return "Hello world"
+  }
 }
